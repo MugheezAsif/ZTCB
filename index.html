@@ -279,8 +279,8 @@
                 </div>
                 <div class="end">
                     <div class="content">
-                        <input type="text" name="input" placeholder="Enter your phone number">
-                        <button>Send Code</button>
+                        <input type="text" name="input" id="user_input" placeholder="Enter your phone number">
+                        <button class="btn-send">Send Code</button>
                     </div>
                 </div>
             </div>
@@ -328,29 +328,38 @@
     const page_3 = document.querySelector('#page-3');
     const page_4 = document.querySelector('#page-4');
 
-    startDiv.addEventListener('click', function() {
+    startDiv.addEventListener('click', function () {
         page_1.style.opacity = '0';
-        setTimeout(function() {
+        setTimeout(function () {
             page_1.style.display = 'none';
             page_2.style.display = 'flex';
         }, 500);
     });
 
+    const btn_send = document.querySelector('.btn-send');
+    btn_send.addEventListener('click', function () {
+        page_2.style.opacity = '0';
+        setTimeout(function () {
+            page_2.style.display = 'none';
+            page_3.style.display = 'flex';
+            let timeInSeconds = 10;
+            const timerElement = document.querySelector('.timer');
+            const timerInterval = setInterval(updateTimer, 1000);
+            function updateTimer() {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timerElement.textContent = formattedTime;
+                if (timeInSeconds === 0) {
+                    document.querySelector('.btn-disable').disabled = false;
+                    clearInterval(timerInterval);
+                }
+            }
+        }, 500);
+    });
 
-    let timeInSeconds = 5;
-    const timerElement = document.querySelector('.timer');
-    const timerInterval = setInterval(updateTimer, 1000);
-    function updateTimer() {
-        timeInSeconds--;
-        const minutes = Math.floor(timeInSeconds / 60);
-        const seconds = timeInSeconds % 60;
-        const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        timerElement.textContent = formattedTime;
-        if (timeInSeconds === 0) {
-            document.querySelector('.btn-disable').disabled = false;
-            clearInterval(timerInterval);
-        }
-    }
+
 </script>
 
 
