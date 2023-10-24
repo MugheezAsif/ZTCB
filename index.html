@@ -16,6 +16,10 @@
             max-height: 100vh;
         }
 
+        button {
+            cursor: pointer;
+        }
+
         .main-bg {
             background: url('background.jpg');
             background-position: center;
@@ -59,6 +63,10 @@
 
         .main-1 .middle {
             padding-top: 20vh;
+        }
+
+        .main-1 .start-div {
+            cursor: pointer;
         }
 
         .main-1 .middle h3 {
@@ -126,14 +134,29 @@
             align-items: center;
         }
 
+        .main-2 .end {
+            width: 100%;
+        }
+
+        .main-2 .end .content {
+            width: 100%;
+        }
+
         .main-2 .end input {
             display: block;
             background-color: transparent;
             padding: 20px;
             outline: #fff;
+            width: 70%;
+            margin: auto;
+            text-align: center;
             border: 1px solid #fff;
             border-radius: 30px;
             color: #fff;
+        }
+
+        .main-2 .end input:focus {
+            background-color: #10137121;
         }
 
         .main-2 .end input::placeholder {
@@ -149,10 +172,62 @@
             margin-top: 25px;
         }
 
+        .main-2 .end button:disabled {
+            cursor: default;
+            background: rgba(54, 54, 54, 0.473);
+        }
+
         .main-2 .middle h3 {
             color: #fff;
             font-weight: 400;
             font-size: 25px;
+        }
+
+        .main-2 .middle h1 {
+            color: #ffffff;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .main-3 {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-3 .main {
+            max-width: 768px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .main-3 .main .logo {
+            border-radius: 50%;
+            padding: 18px;
+            background-color: #9543ff33;
+            margin-bottom: 20px;
+        }
+
+        .main-3 .main img {
+            width: 120px;
+        }
+
+        .main-3 .main h4 {
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        #page-1,
+        #page-2,
+        #page-3,
+        #page-4 {
+            transition: opacity 0.5s;
+        }
+
+        #page-2,
+        #page-3,
+        #page-4 {
+            display: none;
         }
     </style>
 
@@ -160,7 +235,10 @@
 
 <body>
     <div class="main-bg">
-        <!-- <div class="main-1">
+
+        <!-- ************************** Page 1 ************************** -->
+
+        <div class="main-1" id="page-1">
             <div class="main">
                 <div class="top-header">
                     <div class="logo">
@@ -174,7 +252,7 @@
                         <p>AI powered chatbot for malware and phishing</p>
                     </div>
                 </div>
-                <div class="middle-2">
+                <div class="middle-2 start-div">
                     <div class="content">
                         <h4>Tap to start ZTCB</h4>
                         <img src="logo.png" alt="main-logo">
@@ -184,8 +262,11 @@
             <div class="end">
                 <p>©2023 ZTCB. All rights reserved.</p>
             </div>
-        </div> -->
-        <div class="main-2">
+        </div>
+
+        <!-- ************************** Page 2 ************************** -->
+
+        <div class="main-2" id="page-2">
             <div class="eclipse"></div>
             <div class="main">
                 <div class="logo">
@@ -205,7 +286,72 @@
             </div>
         </div>
 
+        <!-- ************************** Page 3 ************************** -->
+
+        <div class="main-2" id="page-3">
+            <div class="main">
+                <div class="logo">
+                    <img src="logo.png" class="logo" alt="main-logo">
+                </div>
+                <div class="middle">
+                    <div class="content">
+                        <h3>Waiting for code</h3>
+                        <h1 class="timer">00:00</h1>
+                    </div>
+                </div>
+                <div class="end">
+                    <div class="content">
+                        <input type="text" max="4" name="input" placeholder="Enter OTP">
+                        <button class="btn-disable btn-resend" disabled>Resend Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ************************** Page 4 ************************** -->
+
+        <div class="main-3" id="page-4">
+            <div class="main">
+                <div class="logo">
+                    <img src="logo.png" alt="logo-image">
+                </div>
+                <h4>OTP Verified</h4>
+            </div>
+        </div>
     </div>
 </body>
+
+<script>
+    const startDiv = document.querySelector('.start-div');
+    const page_1 = document.querySelector('#page-1');
+    const page_2 = document.querySelector('#page-2');
+    const page_3 = document.querySelector('#page-3');
+    const page_4 = document.querySelector('#page-4');
+
+    startDiv.addEventListener('click', function() {
+        page_1.style.opacity = '0';
+        setTimeout(function() {
+            page_1.style.display = 'none';
+            page_2.style.display = 'flex';
+        }, 500);
+    });
+
+
+    let timeInSeconds = 5;
+    const timerElement = document.querySelector('.timer');
+    const timerInterval = setInterval(updateTimer, 1000);
+    function updateTimer() {
+        timeInSeconds--;
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = timeInSeconds % 60;
+        const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        timerElement.textContent = formattedTime;
+        if (timeInSeconds === 0) {
+            document.querySelector('.btn-disable').disabled = false;
+            clearInterval(timerInterval);
+        }
+    }
+</script>
+
 
 </html>
