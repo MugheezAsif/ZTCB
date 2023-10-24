@@ -102,22 +102,56 @@
 
         .main-2 .main {
             text-align: center;
-            height: 50vh;
-            z-index: 1;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
             width: 100%;
             position: relative;
-            overflow: hidden;
+            background-color: #4e4bfeaf;
+            border-top-right-radius: 50% 30%;
+            border-top-left-radius: 50% 30%;
         }
 
-        .main-2 .eclipse {
-            position: absolute;
-            height: 100%;
-            background-color: #4e4bfeaf;
-            width: 150%;
-            border-radius: 30%;
-            bottom: -50%;
-            left: -23%;
-            z-index: 0;
+        .main-2 .logo img {
+            width: 80px;
+            margin-top: -150px;
+        }
+
+        .main-2 .main>div {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-2 .end input {
+            display: block;
+            background-color: transparent;
+            padding: 20px;
+            outline: #fff;
+            border: 1px solid #fff;
+            border-radius: 30px;
+            color: #fff;
+        }
+
+        .main-2 .end input::placeholder {
+            color: #fff;
+        }
+
+        .main-2 .end button {
+            background: linear-gradient(to bottom, #101371b6, #1419a1b2);
+            border: none;
+            color: #fff;
+            padding: 15px 22px;
+            border-radius: 28px;
+            margin-top: 25px;
+        }
+
+        .main-2 .middle h3 {
+            color: #fff;
+            font-weight: 400;
+            font-size: 25px;
         }
     </style>
 
@@ -153,7 +187,20 @@
         <div class="main-2">
             <div class="eclipse"></div>
             <div class="main">
-                <h2>asdf</h2>
+                <div class="logo">
+                    <img src="logo.png" class="logo" alt="main-logo">
+                </div>
+                <div class="middle">
+                    <div class="content">
+                        <h3>Add your phone number</h3>
+                    </div>
+                </div>
+                <div class="end">
+                    <div class="content">
+                        <input type="text" name="input" placeholder="Enter your phone number">
+                        <button>Send Code</button>
+                    </div>
+                </div>
             </div>
         </div>
 
