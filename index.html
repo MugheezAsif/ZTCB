@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial;
-            max-height: 100vh;
+            max-height: 100vh !important;
         }
 
         button {
@@ -217,16 +217,178 @@
             font-size: 20px;
         }
 
+        .main-4 {
+            min-height: 100vh;
+            max-height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .main-4 .main {
+            text-align: center;
+            height: 50vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+            background-color: #fff;
+            border-top-right-radius: 10%;
+            border-top-left-radius: 10%;
+        }
+
+        .main-4 .logo img {
+            width: 80px;
+            margin-top: -170px;
+        }
+
+        .main-4 .main>div {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-4 .end {
+            width: 100%;
+        }
+
+        .main-4 .end .content {
+            width: 100%;
+            text-align: left;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .main-4 .end h1 {
+            color: #000;
+            font-weight: 500;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .main-4 .end p {
+            font-size: 18px;
+            font-weight: 200;
+            line-height: 25px;
+            margin-bottom: 15px;
+        }
+
+        .main-4 .end .btn-group {
+            margin: auto;
+            text-align: center;
+            padding: 20px 2px;
+        }
+
+        .main-4 .end .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-4 .end .input-group input {
+            margin-right: 8px;
+            height: 25px;
+            width: 25px;
+        }
+
+        .main-4 .end .input-group p {
+            margin: 0;
+        }
+
+        .main-4 .end .btn-review {
+            padding: 14px 28px;
+            border: 1px solid #0500FF;
+            background-color: #0500FF;
+            border-radius: 24px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .main-4 .end .btn-connect {
+            padding: 14px 28px;
+            border: 1px solid #0500FF;
+            background-color: transparent;
+            border-radius: 24px;
+            color: #0500FF;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .main-4 .end .btn-connect:disabled {
+            border-color: rgba(54, 54, 54, 0.473);
+            color: rgba(54, 54, 54, 0.473);
+        }
+
+        .policies {
+            position: fixed;
+            z-index: 100;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 0;
+            width: 90vw;
+            background-color: #fff;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: height 0.5s;
+            opacity: 0;
+        }
+
+        .policies.opened {
+            height: 90vh;
+            opacity: 1;
+        }
+
+        .policies .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: 1px solid rgba(54, 54, 54, 0.473);
+            padding: 5px;
+            color: rgba(54, 54, 54, 0.473);
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .policies .content {
+            padding: 30px 20px;
+        }
+
+        .policies .content h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .policies::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .policies::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+        }
+
         #page-1,
         #page-2,
         #page-3,
-        #page-4 {
+        #page-4,
+        #page-5,
+        #page-6 {
             transition: opacity 0.5s;
         }
 
         #page-2,
         #page-3,
-        #page-4 {
+        #page-4,
+        #page-5,
+        #page-6 {
             display: none;
         }
     </style>
@@ -296,12 +458,12 @@
                 <div class="middle">
                     <div class="content">
                         <h3>Waiting for code</h3>
-                        <h1 class="timer">00:00</h1>
+                        <h1 class="timer">00:03</h1>
                     </div>
                 </div>
                 <div class="end">
                     <div class="content">
-                        <input type="text" max="4" name="input" placeholder="Enter OTP">
+                        <input type="text" max="4" name="input" id="otp_input" placeholder="Enter OTP">
                         <button class="btn-disable btn-resend" disabled>Resend Code</button>
                     </div>
                 </div>
@@ -318,16 +480,92 @@
                 <h4>OTP Verified</h4>
             </div>
         </div>
+
+        <!-- ************************** Page 5 ************************** -->
+
+        <div class="main-4" id="page-5">
+            <div class="main">
+                <div class="logo">
+                    <img src="logo.png" class="logo" alt="main-logo">
+                </div>
+                <div class="end">
+                    <div class="content">
+                        <h1>Welcome to ZTCB</h1>
+                        <p>We want to share network policies with you. You can review them and accept.</p>
+                        <div class="input-group">
+                            <input type="checkbox" name="concent" id="concent" onclick="checkConcent()">
+                            <p>I accept the agreement and policies
+                                of this network</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-review" onclick="openPolicy()">Review Policies</button>
+                            <button class="btn-connect" disabled>CONNECT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ************************** Page 6 ************************** -->
+
+        <div class="main-3" id="page-6">
+            <div class="main">
+                <div class="logo">
+                    <img src="logo.png" alt="logo-image">
+                </div>
+                <h4>CONNECTED</h4>
+            </div>
+        </div>
+
+        <!-- ************************** Policy Modal ************************** -->
+
+        <div class="policies">
+            <button class="close-button" onclick="closePolicy()">Close</button>
+            <div class="content">
+                <h2>Network Policies</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer laoreet ante sed tellus dictum
+                    aliquam. Maecenas porta consectetur tortor, sit amet mollis augue rhoncus vitae. In metus orci,
+                    auctor vitae metus nec, convallis egestas metus. In rutrum ex at
+                    <br><br>
+                    congue convallis. Praesent varius elementum ipsum vitae laoreet. Aliquam auctor imperdiet fermentum.
+                    Pellentesque hendrerit est eget nisi pl. In rutrum ex at congue convallis. Praesent varius elementum
+                    ipsum vitae laoreet. Aliquam auctor imperdiet fermentum. Pellentesque hendrerit est eget nisi pl
+                    In rutrum ex at congue convallis. Praesent varius elementum ipsum vitae laoreet. Aliquam auctor.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer laoreet ante sed tellus dictum
+                    aliquam. Maecenas porta consectetur tortor, sit amet mollis augue rhoncus vitae. In metus orci,
+                    auctor vitae metus nec, convallis egestas metus. In rutrum ex at
+                    <br><br>
+                    congue convallis. Praesent varius elementum ipsum vitae laoreet. Aliquam auctor imperdiet fermentum.
+                    Pellentesque hendrerit est eget nisi pl. In rutrum ex at congue convallis. Praesent varius elementum
+                    ipsum vitae laoreet. Aliquam auctor imperdiet fermentum. Pellentesque hendrerit est eget nisi pl
+                    In rutrum ex at congue convallis. Praesent varius elementum ipsum vitae laoreet. Aliquam auctor.
+                    <br><br><br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer laoreet ante sed tellus dictum
+                    aliquam. Maecenas porta consectetur tortor, sit amet mollis augue rhoncus vitae. In metus orci,
+                    auctor vitae metus nec, convallis egestas metus. In rutrum ex at
+                    <br><br>
+                    congue convallis. Praesent varius elementum ipsum vitae laoreet. Aliquam auctor imperdiet fermentum.
+                    Pellentesque hendrerit est eget nisi pl. In rutrum ex at congue convallis.
+                    <br> Praesent varius elementum
+                    ipsum vitae laoreet. Aliquam auctor imperdiet fermentum. Pellentesque hendrerit est eget nisi pl
+                    In rutrum ex at congue convallis. Praesent varius elementum ipsum vitae laoreet. Aliquam auctor.
+                </p>
+            </div>
+        </div>
     </div>
+
 </body>
 
 <script>
-    const startDiv = document.querySelector('.start-div');
     const page_1 = document.querySelector('#page-1');
     const page_2 = document.querySelector('#page-2');
     const page_3 = document.querySelector('#page-3');
     const page_4 = document.querySelector('#page-4');
-
+    const page_5 = document.querySelector('#page-5');
+    const page_6 = document.querySelector('#page-6');
+    
+    const startDiv = document.querySelector('.start-div');
     startDiv.addEventListener('click', function () {
         page_1.style.opacity = '0';
         setTimeout(function () {
@@ -338,11 +576,18 @@
 
     const btn_send = document.querySelector('.btn-send');
     btn_send.addEventListener('click', function () {
+        const user_input = document.querySelector('#user_input');
+        if (user_input.value == '') {
+            user_input.placeholder = 'Error: Enter phone number before continue.';
+            return;
+        } else {
+            user_input.placeholder = 'Enter phone number.';
+        }
         page_2.style.opacity = '0';
         setTimeout(function () {
             page_2.style.display = 'none';
             page_3.style.display = 'flex';
-            let timeInSeconds = 10;
+            let timeInSeconds = 3;
             const timerElement = document.querySelector('.timer');
             const timerInterval = setInterval(updateTimer, 1000);
             function updateTimer() {
@@ -359,8 +604,77 @@
         }, 500);
     });
 
+    const enter_otp = document.querySelector('#otp_input');
+    enter_otp.addEventListener('input', function () {
+        const otp_input = document.querySelector('#otp_input');
+        if (otp_input.value.length === 4) {
+            otp_input.disabled = true;
+            transitionToAsterisks(otp_input);
 
+            setTimeout(function () {
+                page_3.style.opacity = '0';
+                setTimeout(function () {
+                    page_3.style.display = 'none';
+                    page_4.style.display = 'flex';
+
+                    setTimeout(function () {
+                        page_4.style.opacity = '0';
+                        setTimeout(function () {
+                            page_4.style.display = 'none';
+                            page_5.style.display = 'flex';
+                        }, 500);
+                    }, 1500);
+                }, 500);
+            }, 2000);
+        }
+    });
+
+    function transitionToAsterisks(inputElement) {
+        const originalValue = inputElement.value;
+        const length = originalValue.length;
+        let count = 0;
+        const asterisksTimer = setInterval(function () {
+            if (count < length) {
+                inputElement.value = inputElement.value.substring(0, count) + '*' + inputElement.value.substring(count + 1);
+                count++;
+            } else {
+                clearInterval(asterisksTimer);
+            }
+        }, 250);
+    }
+
+    function checkConcent() {
+        if (document.querySelector('#concent').checked) {
+            document.querySelector('.btn-connect').disabled = false;
+        } else {
+            document.querySelector('.btn-connect').disabled = true;
+        }
+    }
+
+    function openPolicy() {
+        const policyModal = document.querySelector('.policies');
+        policyModal.style.display = 'block';
+        policyModal.classList.add('opened');
+    }
+
+    function closePolicy() {
+        const policyModal = document.querySelector('.policies');
+        policyModal.classList.remove('opened');
+        setTimeout(function () {
+            policyModal.style.display = 'none';
+        }, 500);
+    }
+
+    const connect_btn = document.querySelector('.btn-connect');
+    connect_btn.addEventListener('click', function () {
+        if (!document.querySelector('#concent').checked) {
+            return;
+        }
+        page_5.style.opacity = '0';
+        setTimeout(function () {
+            page_5.style.display = 'none';
+            page_6.style.display = 'flex';
+        }, 500);
+    });
 </script>
-
-
 </html>
